@@ -1,87 +1,73 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from 'lucide-react';
+import {  Home, Mail, ServerIcon, Workflow } from 'lucide-react';
 import { Button } from "./ui/button";
+import { ResumeIcon } from "@radix-ui/react-icons";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Resume", href: "/resume" },
-  { name: "Work", href: "/work" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Services", href: "/services", icon: ServerIcon },
+  { name: "Resume", href: "/resume", icon: ResumeIcon },
+  { name: "Work", href: "/work", icon: Workflow },
+  { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-zinc-950/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:px-16">
-          <Link to="/" className="text-white text-2xl font-bold">
-            Zabih<span className="text-[#00FF94]">.</span>
-          </Link>
+    <>
+      <nav className="fixed w-full top-0 z-50 bg-zinc-950/80 backdrop-blur-sm md:block hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16 lg:px-16">
+            <Link to="/" className="text-white text-2xl font-bold">
+              Zabih<span className="text-[#00FF94]">.</span>
+            </Link>
+            {/* Desktop Navigation */}
+            <div className="flex items-center space-x-8">
+              {navigation.slice(0, 5).map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`${
+                    location.pathname === item.href
+                      ? "text-[#00FF94]"
+                      : "text-gray-300 hover:text-[#00FF94]"
+                  } transition-colors`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Button className="bg-[#00FF94] text-black hover:bg-[#00FF94]/90">
+                Hire me
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
+      {/* Mobile Bottom Navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#1e1b4b] shadow-lg">
+        <div className="flex justify-around items-center h-16">
+          {navigation.map((item) => {
+            const Icon = item.icon;
+            return (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`${
+                className={`flex flex-col items-center justify-center w-16 h-16 ${
                   location.pathname === item.href
                     ? "text-[#00FF94]"
-                    : "text-gray-300 hover:text-[#00FF94]"
-                } transition-colors`}
+                    : "text-gray-300"
+                }`}
               >
-                {item.name}
+                <Icon className="h-6 w-6" />
+                <span className="text-xs mt-1">{item.name}</span>
               </Link>
-            ))}
-            <Button className="bg-[#00FF94] text-black hover:bg-[#00FF94]/90">
-              Hire me
-            </Button>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+            );
+          })}
         </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`${
-                  location.pathname === item.href
-                    ? "text-[#00FF94]"
-                    : "text-gray-300 hover:text-[#00FF94]"
-                } block px-3 py-2 text-base font-medium`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Button className="bg-[#00FF94] text-black hover:bg-[#00FF94]/90 w-full mt-4">
-              Hire me
-            </Button>
-          </div>
-        </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 }
 
