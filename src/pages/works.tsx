@@ -9,7 +9,6 @@ import ColorFlipper from '../assets/projects/ColorFlipper.png';
 import TextToVoice from '../assets/projects/Converter.png';
 import ShoeShop from '../assets/projects/ShoeShop.png';
 import StopWatch from '../assets/projects/StopWatch.png';
-import TodoList from '../assets/projects/ToDoList.png';
 import KabulCambridge from '../assets/projects/Kabul-cambridge.png';
 interface Project{
   id: string;
@@ -92,15 +91,6 @@ const projects: Project[] = [
   github_url: "https://github.com/Zabihkeraam1/Stop-Watch",
   url: "#",
   image: StopWatch,
-},
-{
-  id: "9",
-  title: "ToDo List",
-  description: "Dynamic todo list project utilizing HTML, CSS, and JavaScript for efficient DOM management.",
-  technologies: 'HTML, CSS, and JavaScript',
-  github_url: "https://github.com/Zabihkeraam1/ToDo-List",
-  url: "#",
-  image: TodoList,
 },
 ];
 
