@@ -9,7 +9,7 @@ import ColorFlipper from '../assets/projects/ColorFlipper.png';
 import TextToVoice from '../assets/projects/Converter.png';
 import ShoeShop from '../assets/projects/ShoeShop.png';
 import StopWatch from '../assets/projects/StopWatch.png';
-import TodoList from '../assets/projects/TodoList.png';
+import TodoList from '../assets/projects/ToDoList.png';
 import KabulCambridge from '../assets/projects/Kabul-cambridge.png';
 interface Project{
   id: string;
