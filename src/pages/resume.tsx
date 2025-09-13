@@ -36,7 +36,7 @@ const experiences = [
 
 const education = [
   {
-    period: "2014 - 2018",
+    period: "2021 - 2025",
     title: "Bachelor's in Computer Science",
     institution: "Kabul Polytechnic University",
     details: "Studied fundamental programming concepts, data structures, and algorithms",
